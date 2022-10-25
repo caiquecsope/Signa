@@ -1,0 +1,97 @@
+* {
+    font-family: "Poppins", sans-serif;
+  }
+  
+  button {
+    background-color: white;
+    padding: 10px 20px;
+    color: #34a5f8;
+    font-weight: bold;
+    border: 1px solid #34a5f8;
+    border-radius: 6px;
+    transition: 0.3s linear all;
+  }
+  
+  button:hover {
+    background-color: #34a5f8;
+    color: white;
+  }
+  
+  .btn-primary {
+    background-color: #34a5f8;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #287ebb;
+  }
+  
+  .btn-danger {
+    border: 1px solid #e74c3c;
+    background-color: #f83e3e;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c12b2b;
+  }
+  
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  #pessoas {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 32px;
+  }
+  
+  #pessoas td,
+  #pessoas th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #pessoas tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  #pessoas tr:hover {
+    background-color: #ddd;
+  }
+  
+  #pessoas th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #34a5f8;
+    color: white;
+  }
+  
+  input[type="text"] {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type="text"]:disabled {
+    background-color: #ccc;
+  }
+  
+  .containerAction {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  
+  .u-container {
+    max-width: 500px;
+  }
+  

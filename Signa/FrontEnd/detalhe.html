@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <title>Detalhes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="wrap u-container">
+    <h2>Detalhes das informações</h2>
+    <input type="text" value="id" id="id" disabled>
+    <input type="text" value="nome" id="nome">
+    <input type="text" value="cpf" id="cpf" disabled>
+    <div class="containerAction">
+      <button onclick="handleCadastrar()">Gravar</button><br>
+      <a href="montarlista.html?voltar=true"><button class="btn-danger">Sair/Voltar</button></a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search)
+    let id = document.querySelector("#id")
+    id.value = params.get('id')
+    let nome = document.querySelector("#nome")
+    nome.value = params.get('nome')
+    let cpf = document.querySelector("#cpf")
+    cpf.value = params.get('cpf')
+
+    async function updatePessoa(id, nome) {
+      const testURL = 'https://localhost:7261/pessoa';
+      const myInit = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ PESSOA_ID: id, NOME_FANTASIA: nome })
+      };
+      const myRequest = new Request(testURL, myInit);
+      try {
+        let res = await fetch(myRequest);
+        return await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+
+    function handleCadastrar() {
+      let inputId = document.querySelector("#id")
+      let id = inputId.value
+      let inputNome = document.querySelector("#nome")
+      let nome = inputNome.value
+
+      updatePessoa(Number(id), nome)
+    }
+  </script>
+</body>
+
+</html>

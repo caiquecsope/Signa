@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    table a {
+      text-decoration: none;
+      color: #000;
+      width: 100%;
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h2>Consulta de Nome Fantasia</h2>
+
+    <div class="containerButton">
+
+      <button onclick="handlePessoas()">Montar Lista</button>
+      <button onclick="limpar()">Limpar Lista</button>
+      <button class="btn-danger">Sair/Voltar</button>
+
+    </div>
+
+    <div class="container">
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search)
+    if (params.has('voltar')) handlePessoas();
+
+    function limpar() {
+      let container = document.querySelector('.container');
+      container.innerHTML = '';
+    }
+
+    async function getPessoa() {
+      const testURL = 'https://localhost:7261/pessoa';
+      const myInit = {
+        method: 'GET',
+      };
+      const myRequest = new Request(testURL, myInit);
+      try {
+        let res = await fetch(myRequest);
+        return await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+
+
+
+    async function handlePessoas() {
+      let pessoas = await getPessoa();
+      console.log(pessoas);
+      let html = '<table id="pessoas">';
+      html += '<tr> <th>Nome Fantasia</th> <th>CNPJ/CPF</th> </tr>';
+      pessoas.forEach(pessoa => {
+        let htmlSegment = `
+          <tr>
+            <td>
+              <a href="detalhe.html?id=${pessoa.pessoA_ID}&&nome=${pessoa.nomE_FANTASIA}&&cpf=${pessoa.cnpJ_CPF}">
+                ${pessoa.nomE_FANTASIA}
+              </a>
+            </td>
+            <td>
+              <a href="detalhe.html?id=${pessoa.pessoA_ID}&&nome=${pessoa.nomE_FANTASIA}&&cpf=${pessoa.cnpJ_CPF}">
+                ${pessoa.cnpJ_CPF}
+              </a>
+            </td>
+          </tr>
+          `;
+
+        html += htmlSegment;
+      });
+      html += '</table>';
+
+
+      let container = document.querySelector('.container');
+      container.innerHTML = html;
+    }
+
+
+
+
+  </script>
+  </h1>
+
+</body>
+
+</html>
